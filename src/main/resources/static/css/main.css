@@ -1,0 +1,77 @@
+
+h2{
+	color:#030303;
+	text-align: center;
+}
+
+#records {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#records td, #records th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#records tr:nth-child(even){background-color: #f2f2f2;}
+
+#records tr:hover {background-color: #ddd;}
+
+#records th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #400000;
+    color: white;
+}
+
+#records .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+#records .btn-file input[type=file]  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#records .form-control {
+    position: relative;
+}
+#records .form-control input[type=text]  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: left;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#records .form-control{
+	 width:100%;
+	 text-align: left;
+}
+
+#records {
+    text-align: center;
+}
