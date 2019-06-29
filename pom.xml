@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>transaction-report-generator</artifactId>
+	<artifactId>transaction-report-rabo</artifactId>
 	<packaging>war</packaging>
-	<name>Transaction Report Generator</name>
-	<description>Transaction Report Generator</description>
+	<name>Transaction Report</name>
+	<description>Transaction Report</description>
 	<version>1.0</version>
 
 	<parent>
@@ -76,7 +76,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-	<finalName>transaction-report-generator</finalName>
+	<finalName>transaction-report-rabo</finalName>
 		<plugins>
 			<!-- Package as an executable jar/war -->
 			<plugin>
