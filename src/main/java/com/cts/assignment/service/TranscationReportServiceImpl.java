@@ -13,7 +13,7 @@ import com.cts.assignment.domian.Record;
 import com.cts.assignment.domian.Records;
 
 @Service
-public class TranscationServiceImpl implements TransactionService {
+public class TranscationReportServiceImpl implements TransactionReportService {
 
 	@Override
 	public Map<String, ArrayList<Record>> initiateTransaction(Records records) throws JAXBException {
@@ -49,32 +49,4 @@ public class TranscationServiceImpl implements TransactionService {
 
 		return result;
 	}
-
-	/**
-	 * This method is used to validate the transaction
-	 * 
-	 * @param record
-	 *//*
-		 * private void validateTransaction(Record record) {
-		 * 
-		 * List<Record> validRecords = new ArrayList<>(); List<Record> inValidRecords =
-		 * new ArrayList<>();
-		 * 
-		 * inValidRecords = new ArrayList<>();
-		 * 
-		 * double endBalence = Double.parseDouble(record.getStartBalance()) +
-		 * Double.parseDouble(record.getMutation());
-		 * 
-		 * //precession conververion for accurate value endBalence =
-		 * BigDecimal.valueOf(endBalence).setScale(2,
-		 * BigDecimal.ROUND_HALF_UP).doubleValue();
-		 * 
-		 * boolean isReferenceExists = validRecords.stream() .anyMatch(validRecord ->
-		 * validRecord.getReference().equals(record.getReference()));
-		 * 
-		 * if (endBalence == Double.parseDouble(record.getEndBalance()) &&
-		 * !isReferenceExists) { validRecords.add(record); }
-		 * 
-		 * else { inValidRecords.add(record); } }
-		 */
 }

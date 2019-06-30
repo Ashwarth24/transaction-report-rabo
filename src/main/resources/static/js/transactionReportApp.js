@@ -1,36 +1,5 @@
-
 /* Application Module */
 var transactionReportApp = angular.module('transactionReportApp', ['ngFileUpload', 'ngRoute']);
-
-transactionReportApp.config(['$routeProvider',
-
-	function ($routeProvider) {
-
-	$routeProvider.when('/frontend', {
-
-	templateUrl: 'frontend1.html',
-
-	controller: 'CSVReportCtrl'
-
-	}).
-
-	when('/backend', {
-
-	templateUrl: 'backend1.html',
-
-	controller: 'transactionReportCtrl'
-
-	}).
-
-	otherwise({
-
-	redirectTo: '/frontend'
-
-	});
-
-	}
-
-	]);
 
 /* This Controller is used to parse the csv data and sort data based on selected colomn */
 transactionReportApp.controller('CSVReportCtrl', function($scope, $window, $filter) {
@@ -65,7 +34,7 @@ transactionReportApp.controller('CSVReportCtrl', function($scope, $window, $filt
         }
     }
 
-    
+
     // This method is used to filter the table data by the selected colomn
     $scope.sort = function(sortBy) {
         sortFlag = !sortFlag;
@@ -106,42 +75,70 @@ transactionReportApp.controller('CSVReportCtrl', function($scope, $window, $filt
 
 
 /* This Controller is used to validate the file type */
-transactionReportApp.controller('transactionReportCtrl', function($scope, $window,  $http) {
-	 
-	    
-	$scope.Upload = function($files) {
+transactionReportApp.controller('transactionReportCtrl', function($scope, $window, $http) {
+
+    $scope.upload = function() {
         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.xml)$/;
         if (!regex.test($scope.SelectedFile.name.toLowerCase())) {
             $window.alert("Please upload a valid CSV or XML file!!!");
-        }
-         else{
-        	var fd = new FormData();
-            fd.append("file", $scope.SelectedFile["constructor"]);
+        } else {
+            var fd = new FormData();
+            fd.append("file", $scope.SelectedFile);
 
-        /*    $http.post("http://localhost:8080/transaction/report", fd, {
-                headers: {'Content-Type': 'multipart/form-data' },
+            $http.post("http://localhost:8080/transaction/report", fd, {
+                headers: {
+                    'enctype': 'multipart/form-data',
+                    'Content-Type': undefined
+                },
                 transformRequest: angular.identity
-            })*/
-            
-            $http.post('http://localhost:8080/transaction/report', fd, {
-        transformRequest: function(data, headersGetterFunction) {
-            return data;
-        },
-        headers: { 'Content-Type': 'multipart/form-data' }
-        }).then( _success, _error );
+            }).then(_success, _error);
         }
     }
 
-	  $scope.SelectFile = function(file) {
-	        $scope.SelectedFile = file;
-	        $scope.uploadStatus = true;
-	    };
-    
+    $scope.SelectFile = function(file) {
+        $scope.SelectedFile = file;
+        $scope.uploadStatus = true;
+    };
+
     function _success(response) {
-    	console.log(response.data);
+        $scope.IsVisible = true;
+        $scope.responseData = response.data;
+        console.log("Recieved response : " + JSON.stringify(response.data));
     }
 
     function _error(response) {
-        console.log(response.statusText);
+        console.log("Error while processiong the data, errorCode:" + response.status);
     }
 });
+
+
+/*Routing configuration for the application*/
+transactionReportApp.config(['$routeProvider',
+
+    function($routeProvider) {
+
+        $routeProvider.when('/frontend', {
+
+            templateUrl: 'frontend.html',
+
+            controller: 'CSVReportCtrl'
+
+        }).
+
+        when('/backend', {
+
+            templateUrl: 'backend.html',
+
+            controller: 'transactionReportCtrl'
+
+        }).
+
+        otherwise({
+
+            redirectTo: '/backend'
+
+        });
+
+    }
+
+]);

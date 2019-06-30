@@ -20,27 +20,27 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cts.assignment.domian.Record;
 import com.cts.assignment.domian.Records;
-import com.cts.assignment.service.TransactionService;
+import com.cts.assignment.service.TransactionReportService;
 import com.cts.assignment.util.CommonUtil;
 
 /**
- * Customer Report Rest Controller used for mapping report related requests
+ * Transaction Report Rest Controller used for mapping report related requests
  * 
  * @author Ashwarth Gangarapu
  *
  */
 @RestController
 @RequestMapping("/transaction")
-public class CustomerReportController {
+public class TransactionReportController {
 
 	@Autowired
-	TransactionService transactionService;
+	TransactionReportService transactionReportService;
 
-	private static Logger applicationLog = LoggerFactory.getLogger(CustomerReportController.class);
+	private static Logger applicationLog = LoggerFactory.getLogger(TransactionReportController.class);
 
 	
 	@RequestMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public Map<String, ArrayList<Record>> singleFileUpload(@RequestParam("file") MultipartFile file)
+	public Map<String, ArrayList<Record>> uploadFile(@RequestParam("file") MultipartFile file)
 			throws JAXBException, IOException {
 
 		Map<String, ArrayList<Record>> result = new HashMap<>();
@@ -62,7 +62,7 @@ public class CustomerReportController {
 
 			applicationLog.info("Transaction Records : {}", records.getRecord());
 
-			result = transactionService.initiateTransaction(records);
+			result = transactionReportService.initiateTransaction(records);
 
 			applicationLog.info("Transaction Sucessfully Completed!! ");
 

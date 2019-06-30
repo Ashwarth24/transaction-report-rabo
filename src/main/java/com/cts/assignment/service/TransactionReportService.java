@@ -9,12 +9,12 @@ import com.cts.assignment.domian.Record;
 import com.cts.assignment.domian.Records;
 
 /**
- * Interface for TransactionService
+ * Interface for TransactionReportService
  * 
  * @author Ashwarth Gangarapu
  *
  */
-public interface TransactionService {
+public interface TransactionReportService {
 
 	/**
 	 * This method is used to perform the transaction
