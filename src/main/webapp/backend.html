@@ -53,13 +53,13 @@
                <th>Description</th>
             </tr>
             <tbody>
-               <tr ng-repeat="validTransaction in responseData.inValidTransactions">
-                  <td>{{validTransaction.accountNumber}}</td>
-                  <td>{{validTransaction.reference}}</td>
-                  <td>{{validTransaction.startBalance}}</td>
-                  <td>{{validTransaction.endBalance}}</td>
-                  <td>{{validTransaction.mutation}}</td>
-                  <td>{{validTransaction.description}}</td>
+               <tr ng-repeat="inValidTransaction in responseData.inValidTransactions">
+                  <td>{{inValidTransaction.accountNumber}}</td>
+                  <td>{{inValidTransaction.reference}}</td>
+                  <td>{{inValidTransaction.startBalance}}</td>
+                  <td>{{inValidTransaction.endBalance}}</td>
+                  <td>{{inValidTransaction.mutation}}</td>
+                  <td>{{inValidTransaction.description}}</td>
                </tr>
             </tbody>
          </table>
